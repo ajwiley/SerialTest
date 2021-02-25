@@ -9,7 +9,6 @@
         <TabControl>
             <TabItem Header="Serial Connection">
                 <Grid>
-
                     <Label Content="Port Name:" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Height="30" HorizontalContentAlignment="Right"/>
                     <Label Content="Baud Rate:" HorizontalAlignment="Left" Margin="10,45,10,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                     <Label Content="Parity:" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
@@ -18,15 +17,15 @@
                     <Label Content="Handshake:" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                     <Label Content="Rts Enable:" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                     
-                    <TextBox x:Name="TxtPortName"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="95,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="COM1"/>
-                    <TextBox x:Name="TxtBaudRate" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="95,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="9600"/>
+                    <TextBox x:Name="TxtPortName"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="95,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=PortName}"/>
+                    <TextBox x:Name="TxtBaudRate" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="95,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=BaudRate}"/>
                     
-                    <ComboBox x:Name="CmbParity" HorizontalAlignment="Left" Margin="95,80,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
-                        <ComboBoxItem Tag="1" Content="None" IsSelected="True"/>
-                        <ComboBoxItem Tag="2" Content="Odd" />
-                        <ComboBoxItem Tag="3" Content="Even" />
-                        <ComboBoxItem Tag="4" Content="Mark" />
-                        <ComboBoxItem Tag="5" Content="Space" />
+                    <ComboBox SelectedIndex="0" x:Name="CmbParity" HorizontalAlignment="Left" Margin="95,80,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
+                        <ComboBoxItem Tag="1" Content="None"/>
+                        <ComboBoxItem Tag="2" Content="Odd"/>
+                        <ComboBoxItem Tag="3" Content="Even"/>
+                        <ComboBoxItem Tag="4" Content="Mark"/>
+                        <ComboBoxItem Tag="5" Content="Space"/>
                     </ComboBox>
                     
                     <ComboBox x:Name="CmcDataBits" HorizontalAlignment="Left" Margin="95,115,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
@@ -51,7 +50,7 @@
                     </ComboBox>
 
                     <Button Click="StartClick" x:Name="BtnStart" Content="Start" Margin="10,255,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="205"/>
-                    <Button x:Name="BtnKillConnection" Content="Kill connection" Margin="10,290,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="205" />
+                    <Button Click="BtnKillConnection_OnClick" x:Name="BtnKillConnection" Content="Kill connection" Margin="10,290,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="205" />
 
                     <GridSplitter x:Name="GridSplitter" HorizontalAlignment="Left" Margin="235,0,0,0" Width="5" Background="DarkGray"/>
 
