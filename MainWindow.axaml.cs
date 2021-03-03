@@ -15,9 +15,16 @@ using Microsoft.CodeAnalysis.Emit;
 namespace SerialTest {
     public class MainWindow : Window {
         #region Global Variables
+
         private static SerialPort _serialPort = new SerialPort();
         private static Socket _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         private readonly BoundProperties _boundProperties = new BoundProperties();
+        
+        //These are the items in the combo boxes
+        private readonly string[] Parity = {"None", "Odd", "Even", "Mark", "Space"};
+        private readonly string[] Handshake = {"None", "XOnXOff", "RequestToSend", "RequestToSendXOnXOff"};
+        private readonly string[] RtsEnable = { "true", "false" };
+
         #endregion
         
         public MainWindow() {
@@ -34,9 +41,10 @@ namespace SerialTest {
         }
 
         private void StartClick(object sender, RoutedEventArgs e) {
-            _serialPort.Dispose();
+            _serialPort.Dispose(); //Dispose of any serial connections that the user has made before.
 
             try {
+                //Get the items
                 var temp = this.Find<ComboBox>("CmbParity");
                 ComboBox ParityCMB = temp;
                 temp = this.Find<ComboBox>("CmbDataBits");
@@ -46,13 +54,14 @@ namespace SerialTest {
                 temp = this.Find<ComboBox>("CmbRtsEnable");
                 ComboBox RtsEnableCMB = temp;
                 
+                //Create a serial Port with the users wanted information.
                 _serialPort = new SerialPort {
                     PortName = _boundProperties.PortName,
                     BaudRate = Int32.Parse(_boundProperties.BaudRate),
-                    Parity = (Parity)Enum.Parse(typeof(Parity), ParityCMB.SelectedItem.ToString()),
-                    DataBits = int.Parse(DataCMB.SelectedItem.ToString()) + 5,
-                    Handshake = (Handshake)Enum.Parse(typeof(Handshake), HandCMB.SelectedItem.ToString()),
-                    RtsEnable = RtsEnableCMB.SelectedItem.ToString() == "true",
+                    Parity = (Parity)Enum.Parse(typeof(Parity), Parity[ParityCMB.SelectedIndex]),
+                    DataBits = int.Parse(DataCMB.SelectedIndex.ToString()) + 5,
+                    Handshake = (Handshake)Enum.Parse(typeof(Handshake), Handshake[HandCMB.SelectedIndex]),
+                    RtsEnable = RtsEnable[RtsEnableCMB.SelectedIndex] == "true",
                     ReadTimeout = 2000,
                     WriteTimeout = 2000
                 };
@@ -62,13 +71,26 @@ namespace SerialTest {
                     MessageBox.MessageBoxButtons.Ok);
                 return;
             }
+
+            try {
+                //When we get data update the text box
+                _serialPort.DataReceived += new SerialDataReceivedEventHandler(NewSerialData);
+
+                _serialPort.Open(); //Open the connection
+            }
+            catch (Exception ex) {
+                //Show the error message.
+                MessageBox.Show(this, "Failed to open serial port:\r\n" + ex.Message, "Command Error",
+                    MessageBox.MessageBoxButtons.Ok);
+            }
+        }
+
+        private void NewSerialData(object sender, SerialDataReceivedEventArgs e) {
+            Thread.Sleep(50);
+            _boundProperties.Response = _serialPort.ReadExisting().Trim();
         }
 
         private void BtnKillConnection_OnClick(object? sender, RoutedEventArgs e) {
-            var temp = this.Find<ComboBox>("CmbParity");
-            ComboBox CMB = temp;
-            ComboBoxItem CMBI = (ComboBoxItem)temp.SelectedItem;
-            Console.WriteLine(CMB.SelectedIndex);
         }
     }
 }

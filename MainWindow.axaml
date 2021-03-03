@@ -28,7 +28,7 @@
                         <ComboBoxItem Tag="5" Content="Space"/>
                     </ComboBox>
                     
-                    <ComboBox x:Name="CmcDataBits" SelectedIndex="3" HorizontalAlignment="Left" Margin="95,115,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
+                    <ComboBox x:Name="CmbDataBits" SelectedIndex="3" HorizontalAlignment="Left" Margin="95,115,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
                         <ComboBoxItem Tag="1" Content="5"/>
                         <ComboBoxItem Tag="2" Content="6"/>
                         <ComboBoxItem Tag="3" Content="7"/>

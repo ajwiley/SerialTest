@@ -6,31 +6,26 @@ using Avalonia.Interactivity;
 
 namespace SerialTest {
     public class MessageBox : Window {
-        public enum MessageBoxButtons
-        {
+        public enum MessageBoxButtons {
             Ok,
             OkCancel,
             YesNo,
             YesNoCancel
         }
 
-        public enum MessageBoxResult
-        {
+        public enum MessageBoxResult {
             Ok,
             Cancel,
             Yes,
             No
         }
 
-        public MessageBox()
-        {
+        public MessageBox() {
             AvaloniaXamlLoader.Load(this);
         }
 
-        public static Task<MessageBoxResult> Show(Window parent, string text, string title, MessageBoxButtons buttons)
-        {
-            var msgbox = new MessageBox()
-            {
+        public static Task<MessageBoxResult> Show(Window parent, string text, string title, MessageBoxButtons buttons) {
+            var msgbox = new MessageBox() {
                 Title = title
             };
             msgbox.FindControl<TextBlock>("Text").Text = text;
@@ -38,10 +33,9 @@ namespace SerialTest {
 
             var res = MessageBoxResult.Ok;
 
-            void AddButton(string caption, MessageBoxResult r, bool def = false)
-            {
+            void AddButton(string caption, MessageBoxResult r, bool def = false) {
                 var btn = new Button {Content = caption};
-                btn.Click += (_, __) => { 
+                btn.Click += (_, __) => {
                     res = r;
                     msgbox.Close();
                 };
@@ -52,8 +46,7 @@ namespace SerialTest {
 
             if (buttons == MessageBoxButtons.Ok || buttons == MessageBoxButtons.OkCancel)
                 AddButton("Ok", MessageBoxResult.Ok, true);
-            if (buttons == MessageBoxButtons.YesNo || buttons == MessageBoxButtons.YesNoCancel)
-            {
+            if (buttons == MessageBoxButtons.YesNo || buttons == MessageBoxButtons.YesNoCancel) {
                 AddButton("Yes", MessageBoxResult.Yes);
                 AddButton("No", MessageBoxResult.No, true);
             }
