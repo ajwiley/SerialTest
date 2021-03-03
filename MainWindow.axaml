@@ -55,26 +55,21 @@
                     <GridSplitter x:Name="GridSplitter" HorizontalAlignment="Left" Margin="235,0,0,0" Width="5" Background="DarkGray"/>
 
                     <Label Content="Command:" HorizontalAlignment="Left" Margin="250,10,0,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-                    <TextBox x:Name="TxtCommand" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="330,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="TxtCommand" Text="{Binding Path=Command}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="330,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     
-                    <CheckBox x:Name="CbResetCommand" Content="Reset Command" HorizontalAlignment="Left" Margin="460,10,0,0" VerticalAlignment="Top" IsChecked="True" Height="15"/>
+                    <CheckBox x:Name="CbResetCommand" Content="Reset Command" HorizontalAlignment="Left" Margin="460,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=Reset}" Height="15"/>
                     
                     <RadioButton x:Name="RbCarriageReturn" GroupName="AutoEnding" Content="\r" HorizontalAlignment="Left" Margin="255,45,0,0" VerticalAlignment="Top" Width="40" RenderTransformOrigin="-2.699,-2.933"/>
                     <RadioButton x:Name="RbLineFeed" GroupName="AutoEnding" Content="\n" HorizontalAlignment="Left" Margin="300,45,0,0" VerticalAlignment="Top" Width="40"/>
-                    <RadioButton x:Name="RbBoth" GroupName="AutoEnding" Content="\r\n" HorizontalAlignment="Left" Margin="345,45,0,0" VerticalAlignment="Top" IsChecked="True" Width="40"/>
-                    <RadioButton GroupName="AutoEnding" Content="Manual" HorizontalAlignment="Left" Margin="405,45,0,0" VerticalAlignment="Top" IsChecked="True" Width="60"/>
+                    <RadioButton x:Name="RbBoth" GroupName="AutoEnding" Content="\r\n" HorizontalAlignment="Left" Margin="345,45,0,0" VerticalAlignment="Top" Width="40" IsChecked="{Binding Path=Both, Mode=TwoWay}"/>
+                    <RadioButton x:Name="RbManual" GroupName="AutoEnding" Content="Manual" HorizontalAlignment="Left" Margin="405,45,0,0" VerticalAlignment="Top" Width="60"/>
 
-                    <Button x:Name="BtnSend" Content="Send" Margin="250,80,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="395" />
+                    <Button x:Name="BtnSend" Click="BtnSend_OnClick" Content="Send" Margin="250,80,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="395" />
 
                     <Label Content="Response:" HorizontalAlignment="Left" Margin="250,110,0,0" VerticalAlignment="Top" Height="30" Width="70" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                     <TextBox x:Name="TxtResponse" Text="{Binding Path=Response, Mode=OneWay}" Height="97" Margin="325,120,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" />
                 </Grid>
             </TabItem>
-            
-            <TabItem Header="Test">
-                
-            </TabItem>
-
         </TabControl>
     </Grid>
 </Window>

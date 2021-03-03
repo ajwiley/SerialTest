@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
 namespace SerialTest {
@@ -19,7 +20,16 @@ namespace SerialTest {
             get => _PortName;
             set {
                 _PortName = value;
-                OnPropertyChanged(nameof(Response));
+                OnPropertyChanged(nameof(PortName));
+            }
+        }
+        
+        private string _Command;
+        public string Command {
+            get => _Command;
+            set {
+                _Command = value;
+                OnPropertyChanged(nameof(Command));
             }
         }
         
@@ -28,7 +38,42 @@ namespace SerialTest {
             get => _BaudRate;
             set {
                 _BaudRate = value;
-                OnPropertyChanged(nameof(Response));
+                OnPropertyChanged(nameof(BaudRate));
+            }
+        }
+
+        private bool _Both;
+        public bool Both {
+            get => _Both;
+            set {
+                _Both = value;
+                OnPropertyChanged(nameof(Both));
+            }
+        }
+        private bool _CR;
+        public bool CR {
+            get => _CR;
+            set {
+                _CR = value;
+                OnPropertyChanged(nameof(CR));
+            }
+        }
+
+        private bool _LF;
+        public bool LF {
+            get => _LF;
+            set {
+                _LF = value;
+                OnPropertyChanged(nameof(LF));
+            }
+        }
+
+        private bool _Reset;
+        public bool Reset {
+            get => _Reset;
+            set {
+                _Reset = value;
+                OnPropertyChanged(nameof(Reset));
             }
         }
 
@@ -36,6 +81,9 @@ namespace SerialTest {
             _Response = "";
             _PortName = "COM1";
             _BaudRate = "9600";
+            _Command = "";
+            Both = true;
+            Reset = true;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
