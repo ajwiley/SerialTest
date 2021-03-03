@@ -38,14 +38,28 @@ namespace SerialTest {
 
             try {
                 var temp = this.Find<ComboBox>("CmbParity");
-                ComboBox CMB = temp;
+                ComboBox ParityCMB = temp;
+                temp = this.Find<ComboBox>("CmbDataBits");
+                ComboBox DataCMB = temp;
+                temp = this.Find<ComboBox>("CmbHandshake");
+                ComboBox HandCMB = temp;
+                temp = this.Find<ComboBox>("CmbRtsEnable");
+                ComboBox RtsEnableCMB = temp;
+                
                 _serialPort = new SerialPort {
                     PortName = _boundProperties.PortName,
                     BaudRate = Int32.Parse(_boundProperties.BaudRate),
-                    Parity = (Parity)Enum.Parse(typeof(Parity), CMB.SelectedItem.ToString())
+                    Parity = (Parity)Enum.Parse(typeof(Parity), ParityCMB.SelectedItem.ToString()),
+                    DataBits = int.Parse(DataCMB.SelectedItem.ToString()) + 5,
+                    Handshake = (Handshake)Enum.Parse(typeof(Handshake), HandCMB.SelectedItem.ToString()),
+                    RtsEnable = RtsEnableCMB.SelectedItem.ToString() == "true",
+                    ReadTimeout = 2000,
+                    WriteTimeout = 2000
                 };
             }
-            catch (Exception) {
+            catch (Exception ex) {
+                MessageBox.Show(this, "One or more provided values are bad:\r\n" + ex.Message, "Command Error",
+                    MessageBox.MessageBoxButtons.Ok);
                 return;
             }
         }
@@ -54,7 +68,7 @@ namespace SerialTest {
             var temp = this.Find<ComboBox>("CmbParity");
             ComboBox CMB = temp;
             ComboBoxItem CMBI = (ComboBoxItem)temp.SelectedItem;
-            Console.WriteLine(CMBI.Content);
+            Console.WriteLine(CMB.SelectedIndex);
         }
     }
 }

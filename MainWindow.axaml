@@ -28,25 +28,25 @@
                         <ComboBoxItem Tag="5" Content="Space"/>
                     </ComboBox>
                     
-                    <ComboBox x:Name="CmcDataBits" HorizontalAlignment="Left" Margin="95,115,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
+                    <ComboBox x:Name="CmcDataBits" SelectedIndex="3" HorizontalAlignment="Left" Margin="95,115,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
                         <ComboBoxItem Tag="1" Content="5"/>
                         <ComboBoxItem Tag="2" Content="6"/>
                         <ComboBoxItem Tag="3" Content="7"/>
-                        <ComboBoxItem Tag="4" Content="8" IsSelected="True" />
+                        <ComboBoxItem Tag="4" Content="8"/>
                     </ComboBox>
                     
                     <TextBox x:Name="TxtStopBits" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="95,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="1"/>
                     
-                    <ComboBox x:Name="CmbHandshake" HorizontalAlignment="Left" Margin="95,185,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
-                        <ComboBoxItem Tag="1" Content="None" IsSelected="True"/>
+                    <ComboBox x:Name="CmbHandshake" SelectedIndex="0" HorizontalAlignment="Left" Margin="95,185,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
+                        <ComboBoxItem Tag="1" Content="None"/>
                         <ComboBoxItem Tag="2" Content="XOnXOff"/>
                         <ComboBoxItem Tag="3" Content="RequestToSend"/>
                         <ComboBoxItem Tag="4" Content="RequestToSendXOnXOff"/>
                     </ComboBox>
                     
-                    <ComboBox x:Name="CmbRtsEnable" HorizontalAlignment="Left" Margin="95,220,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
+                    <ComboBox x:Name="CmbRtsEnable" SelectedIndex="1" HorizontalAlignment="Left" Margin="95,220,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center">
                         <ComboBoxItem Tag="1" Content="True"/>
-                        <ComboBoxItem IsSelected="True" Tag="2" Content="False"/>
+                        <ComboBoxItem Tag="2" Content="False"/>
                     </ComboBox>
 
                     <Button Click="StartClick" x:Name="BtnStart" Content="Start" Margin="10,255,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="205"/>
