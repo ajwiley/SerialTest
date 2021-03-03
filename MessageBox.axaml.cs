@@ -29,7 +29,7 @@ namespace SerialTest {
                 Title = title
             };
             
-            Msgbox.FindControl<TextBlock>("Text").Text = text;
+            Msgbox.FindControl<TextBlock>("Text").Text = "\n    " + text + "    \n";
             var buttonPanel = Msgbox.FindControl<StackPanel>("Buttons");
 
             var res = MessageBoxResult.Ok;

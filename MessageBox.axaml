@@ -5,7 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="SerialTest.MessageBox" SizeToContent="WidthAndHeight" CanResize="False">
     <StackPanel HorizontalAlignment="Center">
-        <TextBlock HorizontalAlignment="Center" Name="Text" />
+        <TextBlock HorizontalAlignment="Center" Name="Text" Margin="0, 0, 0, 10"/>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Name="Buttons">
             <StackPanel.Styles>
                 <Style Selector="Button">
