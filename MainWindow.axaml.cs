@@ -100,15 +100,19 @@ namespace SerialTest {
             _serialPort.Dispose();
         }
 
+        /// <summary>
+        /// Send a command based on what the user has input.
+        /// </summary>
         private void BtnSend_OnClick(object? sender, RoutedEventArgs e) {
+            //Make sure the user entered something.
             if (_boundProperties.Command == "") {
                 MessageBox.Show(this, "Make sure you enter in a command!", "Command Error",
                     MessageBox.MessageBoxButtons.Ok);
                 return;
             }
 
+            //Figure out the postfix.
             string PostFix = "";
-
             if (_boundProperties.CR) {
                 PostFix = "\r";
             }
@@ -119,18 +123,20 @@ namespace SerialTest {
                 PostFix = "\r\n";
             }
 
+            //Put the users command into bytes.
             byte[] CommandBytes = Encoding.ASCII.GetBytes(Regex.Unescape(_boundProperties.Command) + PostFix);
 
+            //Try sending the command, show an error if it fails.
             try {
                 _serialPort.Write(CommandBytes, 0, CommandBytes.Length);
             }
             catch (Exception ex) {
                 MessageBox.Show(this, "Failed to send command!\r\n" + ex.Message, "Command Error", MessageBox.MessageBoxButtons.Ok);
+                return;
             }
 
-            var CbReset = this.Find<CheckBox>("CbResetCommand");
-            CheckBox Reset = CbReset;
-            if ((bool) Reset.IsChecked) {
+            //Reset if need be.
+            if (_boundProperties.Reset) {
                 _boundProperties.Command = "";
             }
         }

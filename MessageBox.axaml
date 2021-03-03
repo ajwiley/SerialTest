@@ -12,7 +12,6 @@
                     <Setter Property="Margin" Value="5" />
                 </Style>
             </StackPanel.Styles>
-
         </StackPanel>
     </StackPanel>
 </Window>
